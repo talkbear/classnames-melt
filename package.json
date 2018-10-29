@@ -1,6 +1,6 @@
 {
   "name": "classnames-melt",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A tool to generate a object which key-value is a string of class names based on given config.",
   "main": "index.js",
   "scripts": {
