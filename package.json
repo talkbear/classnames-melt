@@ -1,10 +1,10 @@
 {
   "name": "classnames-melt",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "A tool to generate a object which key-value is a string of class names based on given config.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/index.js"
   },
   "repository": {
     "type": "git",

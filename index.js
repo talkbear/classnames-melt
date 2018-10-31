@@ -29,16 +29,16 @@ const compileSpecialChar = ( prefix, str) => {
 }
 
 const getCompiledWithChild = (pre, next, child) => {
+  console.log(pre);
+  console.log(next + ' ' + child);
   if(_.isString(child)){
-    return {
-      ...pre,
+    return Object.assign({},pre, {
       [`_${next}`]: child,
-    }
+    })
   }
-  return {
-    ...pre,
+  return Object.assign({}, pre, {
     [next]: child,
-  };
+  });
 }
 
 const getDashString = strArr => {
@@ -55,24 +55,20 @@ const melt = skull => {
 
     return Object.keys(init).reduce((pre, key) => {
       const subItem = init[key];
-
       if (_.isObject(subItem) && !subItem.length) {
         const child = noop(subItem, getDashString([parentKey, key]));
 
         return getCompiledWithChild(pre, key, child);
       } else if (_.isArray(subItem)) {
+        
         return subItem.reduce((preSub, nextChild) => {
           if (_.isString(nextChild)) {
             // get current classnames 
             const _key = `_${key}`;
-            console.log(parentKey)
             const classnames = `${preSub[_key] || ''} ${compileSpecialChar(
               getDashString([parentKey, key]),
               nextChild,
             )}`;
-            const childWithClassNames = {
-              self: classnames,
-            };
 
             return getCompiledWithChild(preSub, key, classnames);
          
@@ -82,7 +78,7 @@ const melt = skull => {
 
             return getCompiledWithChild(preSub, key, child);
           }
-        }, {});
+        }, pre);
       }
     }, {});
   };
