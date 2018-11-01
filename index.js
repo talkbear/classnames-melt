@@ -29,8 +29,6 @@ const compileSpecialChar = ( prefix, str) => {
 }
 
 const getCompiledWithChild = (pre, next, child) => {
-  console.log(pre);
-  console.log(next + ' ' + child);
   if(_.isString(child)){
     return Object.assign({},pre, {
       [`_${next}`]: child,
@@ -75,7 +73,6 @@ const melt = skull => {
           } else if (_.isObject(nextChild)) {
             // depth into child            
             const child = noop(nextChild, getDashString([parentKey, key]));
-
             return getCompiledWithChild(preSub, key, child);
           }
         }, pre);
