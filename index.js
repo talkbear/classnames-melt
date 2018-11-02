@@ -60,7 +60,7 @@ const melt = skull => {
       } else if (_.isArray(subItem)) {
         
         return subItem.reduce((preSub, nextChild) => {
-          if (_.isString(nextChild)) {
+          if (_.isString(nextChild) && nextChild) {
             // get current classnames 
             const _key = `_${key}`;
             const classnames = `${preSub[_key] || ''} ${compileSpecialChar(
@@ -75,8 +75,12 @@ const melt = skull => {
             const child = noop(nextChild, getDashString([parentKey, key]));
             return getCompiledWithChild(preSub, key, child);
           }
+          return pre;
         }, pre);
+      }else if(_.isBoolean(subItem) && subItem){
+        return getCompiledWithChild(pre, key, getDashString([parentKey, key]));
       }
+      return pre;
     }, {});
   };
   return noop(skull, '');

@@ -7,7 +7,7 @@ console.log(JSON.stringify(melt({
       '&',
       {
         name: ['user-&'],
-        icon: ['&'],
+        icon: true,
       },
     ],
   },
