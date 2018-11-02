@@ -75,7 +75,7 @@ const melt = skull => {
             const child = noop(nextChild, getDashString([parentKey, key]));
             return getCompiledWithChild(preSub, key, child);
           }
-          return pre;
+          return preSub;
         }, pre);
       }else if(_.isBoolean(subItem) && subItem){
         return getCompiledWithChild(pre, key, getDashString([parentKey, key]));
